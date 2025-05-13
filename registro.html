@@ -3,37 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="">
+    <title>Página de Registro</title>
+    <link rel="stylesheet" >
+    <link rel="stylesheet" href="registro.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <a href="glichGESTIONMED.html" class="back-arrow" >&larr;</a>
-            <img src="https://cdn.glitch.global/178052fc-7d6e-42a8-9f65-6ec1f1aed727/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?v=1732227518990" alt="Imagen de medicina" class="header-image">
+            <a href="#" class="back-arrow">&larr;</a>
+            <h1>Registro</h1>
+            <p>Ingresa con los siguientes datos.</p>
         </header>
 
-        <h1>Inicio de sesión</h1>
-        <p>Inicia sesión con tu cuenta de Google.</p>
-
         <form>
+            <label for="nombre" style="font-weight: bold;">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre completo" value="Andres Pérez">
+
             <label for="email" style="font-weight: bold;">Email</label>
-            <input type="email" id="email" name="email" placeholder="Introduce tu correo elctronico">
+            <input type="email" id="email" name="email" placeholder="Introduce tu correo elctronico" value="andress_pz@email.com">
 
             <label for="password" style="font-weight: bold;">Contraseña</label>
             <input type="password" id="password" name="password" placeholder="Introduce tu contraseña">
+           
+            <label for="confirm-password" style="font-weight: bold;">Confirmar contraseña</label> 
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirma tu contraseña">
 
-            <button type="submit">Inicia sesión</button>
+            <button type="submit">Crear cuenta</button>
         </form>
 
         <footer>
-            <p>¿No tienes cuenta? <a href="registro_figma.html">Regístrate</a></p>
+            <p>¿Ya tienes cuenta? <a href="login_figma.html">Inicia sesión</a></p>
         </footer>
     </div>
 
-    
-</body>
-<style>
+
+<!-- <style> 
 
 * {
     margin: 0;
@@ -65,17 +69,10 @@ header {
     margin-bottom: 20px;
 }
 
-.back-arrow { 
+.back-arrow {
     text-decoration: none;
     color: #333;
     font-size: 1.5em;
-} 
-
-
-.header-image { /* Imagen */
-    width: 100%;
-    border-radius: 10px;
-    
 }
 
 h1 {
@@ -144,4 +141,7 @@ footer a:hover {
 }
 
 </style>
+ -->
+
+</body>
 </html>
