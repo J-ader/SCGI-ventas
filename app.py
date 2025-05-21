@@ -8,7 +8,7 @@ app.secret_key = "your_secret_key"
 app.config["MYSQL_HOST"] = "localhost"  # Host de la base de datos
 app.config["MYSQL_USER"] = "root"  # Usuario de la base de datos
 app.config["MYSQL_PASSWORD"] = "2569"  # Contraseña de la base de datos
-app.config["MYSQL_DB"] = "GestionMed"  # Nombre de la base de datos
+app.config["MYSQL_DB"] = "gestion_med"  # Nombre de la base de datos
 
 mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
 
