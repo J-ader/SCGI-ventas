@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key"
@@ -10,12 +10,12 @@ app.secret_key = "your_secret_key"
 app.config["MYSQL_HOST"] = "localhost"  # Host de la base de datos
 app.config["MYSQL_USER"] = "root"  # Usuario de la base de datos
 app.config["MYSQL_PASSWORD"] = "2569"  # Contraseña de la base de datos
-app.config["MYSQL_DB"] = "gestion_med"  # Nombre de la base de datos
+app.config["MYSQL_DB"] = "prueba_crud"  # Nombre de la base de datos
 
 mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
 
 
-# prueba para saber si la base de datos se conecta correctamente
+#prueba para saber si la base de datos se conecta correctamente
 """ try:
     with app.app_context():
         cur = mysql.connection.cursor()
@@ -23,13 +23,12 @@ mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
         print("✅ Conexión exitosa a la base de datos")
 except Exception as e:
     print(f"❌ Error al conectar a la base de datos: {e}")
- """
 
+  """
 
 @app.route("/")
 def home():
     return redirect(url_for("login"))
-
 
 # Registro de usuario
 @app.route("/register", methods=["GET", "POST"])
@@ -39,31 +38,21 @@ def register():
         apellido = request.form["apellido"]  # Apellido del usuario
         telefono = request.form["telefono"]  # Teléfono del usuario
         email = request.form["email"]  # Email del usuario
-        fecha_nacimiento = request.form.get(
-            "fecha_nacimiento", "2000-01-01"
-        )  # Fecha de nacimiento
-        contraseña = generate_password_hash(
-            request.form["password"]
-        )  # Contraseña hasheada
+        fecha_nacimiento = request.form.get("fecha_nacimiento", "2000-01-01")  # Fecha de nacimiento
+        contraseña = generate_password_hash(request.form["password"])  # Contraseña hasheada
 
         cur = mysql.connection.cursor()  # Cursor para ejecutar consultas
-        cur.execute(
-            """
+        cur.execute("""
             INSERT INTO usuarios (nombre, apellido, telefono, email, fecha_nacimiento, contraseña)
             VALUES (%s, %s, %s, %s, %s, %s)
-        """,
-            (nombre, apellido, telefono, email, fecha_nacimiento, contraseña),
-        )
+        """, (nombre, apellido, telefono, email, fecha_nacimiento, contraseña))
         mysql.connection.commit()  # Guarda los cambios en la base de datos
         cur.close()  # Cierra el cursor
 
-        flash(
-            "Cuenta creada exitosamente. Ahora puedes iniciar sesión."
-        )  # Mensaje de éxito
+        flash("Cuenta creada exitosamente. Ahora puedes iniciar sesión.")  # Mensaje de éxito
         return redirect(url_for("login"))  # Redirige al login
 
     return render_template("registro.html")  # Muestra el formulario de registro
-
 
 # Inicio de sesión
 @app.route("/login", methods=["GET", "POST"])
@@ -81,23 +70,38 @@ def login():
 
         # Verifica si el usuario existe y la contraseña es correcta
         if usuario and check_password_hash(usuario["contraseña"], password):
-            session["username"] = usuario.get(
-                "nombre", usuario.get("username", "")
-            )  # Guarda nombre en sesión
-            session["nombre"] = usuario[
-                "nombre"
-            ]  # Guarda nombre en sesión para dashboard
+            session["username"] = usuario.get("nombre", usuario.get("username", ""))  # Guarda nombre en sesión
+            session["nombre"] = usuario["nombre"]  # Guarda nombre en sesión para dashboard
             return redirect(url_for("dashboard"))  # Redirige al dashboard
         else:
             flash("Credenciales inválidas")  # Mensaje de error
 
     return render_template("login.html")  # Muestra el formulario de login
 
-
 def process_email(email):
     """Corrige el error anterior y permite procesar el email correctamente."""
     print(f"Procesando email: {email}")
 
+# Decorador para verificar si el usuario ha iniciado sesión
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "nombre" not in session:
+            flash("Debes iniciar sesión para acceder.")
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# Panel principal, muestra todos los usuarios si hay sesión activa
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM usuarios")
+    column_names = [desc[0] for desc in cur.description]
+    usuarios = [dict(zip(column_names, row)) for row in cur.fetchall()]
+    cur.close()
+    return render_template("dashboard.html", usuarios=usuarios)  # Muestra el dashboard con usuarios
 
 # Eliminar usuario por ID
 @app.route("/delete/<int:id>")
@@ -110,7 +114,6 @@ def delete_user(id):
 
     flash("Usuario eliminado correctamente")  # Mensaje de éxito
     return redirect(url_for("dashboard"))  # Redirige al dashboard
-
 
 # Editar usuario por ID
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
@@ -125,14 +128,11 @@ def edit_user(id):
         email = request.form["email"]  # Nuevo email
         fecha_nacimiento = request.form["fecha_nacimiento"]  # Nueva fecha de nacimiento
 
-        cur.execute(
-            """
+        cur.execute("""
             UPDATE usuarios
             SET nombre = %s, apellido = %s, telefono = %s, email = %s, fecha_nacimiento = %s
             WHERE id = %s
-        """,
-            (nombre, apellido, telefono, email, fecha_nacimiento, id),
-        )  # Actualiza datos
+        """, (nombre, apellido, telefono, email, fecha_nacimiento, id))  # Actualiza datos
 
         mysql.connection.commit()
         cur.close()
@@ -146,18 +146,14 @@ def edit_user(id):
     usuario = dict(zip(columnas, row))  # Diccionario usuario
     cur.close()
 
-    return render_template(
-        "edit.html", usuario=usuario
-    )  # Muestra formulario de edición
-
+    return render_template("edit.html", usuario=usuario)  # Muestra formulario de edición
 
 # Cerrar sesión
 @app.route("/logout")
 def logout():
     session.pop("username", None)  # Elimina la variable de sesión username
-    session.pop("nombre", None)  # Elimina la variable de sesión nombre
+    session.pop("nombre", None)    # Elimina la variable de sesión nombre
     return redirect(url_for("login"))  # Redirige al login
-
 
 # Ejecuta la aplicación en modo debug
 if __name__ == "__main__":
