@@ -4,13 +4,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 
 app = Flask(__name__)
-app.secret_key = "your_secret_key"
+app.secret_key = "secret_key"
 
 # Conexión a la base de datos
 app.config["MYSQL_HOST"] = "localhost"  # Host de la base de datos
 app.config["MYSQL_USER"] = "root"  # Usuario de la base de datos
 app.config["MYSQL_PASSWORD"] = "2569"  # Contraseña de la base de datos
-app.config["MYSQL_DB"] = "prueba_crud"  # Nombre de la base de datos
+app.config["MYSQL_DB"] = "gestion_med"  # Nombre de la base de datos
 
 mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
 
