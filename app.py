@@ -28,7 +28,7 @@ except Exception as e:
 
 @app.route("/")
 def home():
-    return redirect(url_for("login"))
+    return render_template("index.html")
 
 # Registro de usuario
 @app.route("/register", methods=["GET", "POST"])
