@@ -115,6 +115,21 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Mensajes flash de éxito o error */
+.flash-messages {
+    margin: 0px 0px 20px 0px;
+    padding: 10px;
+    background-color: #e0ffe0;
+    border: 1px solid #4CAF50;
+    color: #333;
+    border-radius: 5px;
+}
+
+.flash-messages ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
 
 /* Adaptación para pantallas móviles */
 @media (max-width: 600px) {

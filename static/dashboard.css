@@ -97,7 +97,7 @@ a.action-button {
 
 /* Mensajes flash de éxito o error */
 .flash-messages {
-    margin-top: 15px;
+    margin: 0px 0px 20px 0px;
     padding: 10px;
     background-color: #e0ffe0;
     border: 1px solid #4CAF50;
