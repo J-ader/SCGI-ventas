@@ -155,6 +155,13 @@ def logout():
     session.pop("nombre", None)    # Elimina la variable de sesión nombre
     return redirect(url_for("login"))  # Redirige al login
 
+
+
+#ruta para la página de inicio
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
 # Ejecuta la aplicación en modo debug
 if __name__ == "__main__":
     app.run(debug=True)
