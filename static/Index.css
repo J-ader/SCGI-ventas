@@ -222,7 +222,7 @@
         margin-top: 20px;
     }
 
-    /* -------------------agraegado prueba---------------------- */
+    /* -------------------agregado prueba---------------------- */
 
     footer {
         background-color: #18d0f4;
@@ -301,9 +301,8 @@
         background-size: cover;
         background-position: center;
 
-        /*
-  justify-content: center;
-  align-items: center;*/
+        /*   justify-content: center;
+             align-items: center;*/
         color: #723185;
         /* ajusta el color del texto */
     }
