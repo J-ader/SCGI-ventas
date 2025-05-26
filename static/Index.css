@@ -14,6 +14,13 @@
         text-align: center;
         padding: 20px 0px 0px 0px;
     }
+    
+    .logo_{
+        height: 70px; /* Ajusta la altura deseada */
+        width: 70px; /* Para que sea cuadrado inicialmente */
+        border-radius: 50%; /* Para hacerlo circular */
+        margin-right: 10px; /* Espacio entre el logo y el texto */
+    }
 
     /* Estilos para la barra de navegación */
     nav {
