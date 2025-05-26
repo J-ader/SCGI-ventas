@@ -16,9 +16,14 @@
 <body>
   <header>
     <!--   <header>  -->
+    <div class="container-fluid" >
     <h1>GestionMed</h1>
-    <p>Su solucion integral para la venta de medicamentos</p>
-    <!--  </header> -->
+       <p>Su solución integral para la venta de medicamentos.</p>
+       <!--  logo pagina -->
+       <img class="logo_" src="../Media/Logo_proyecto.jpg" alt="Logo de la plataforma">
+      </div>
+ 
+    
 
     <div class="container-fluid" >
 
@@ -28,9 +33,6 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <a class="navbar-brand" href="#">GestionMed</a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Iniciasion</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('login') }}">Iniciar Sesión</a>
           </li>
@@ -72,7 +74,13 @@
 
       <!-- Formulario de búsqueda -->
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <select class="form-select me-2" aria-label="Categorías">
+                    <option selected>Todas las categorías</option>
+                    <option value="Salud y medicamentos">Salud y medicamentos</option>
+                    <option value="Cuidados de la familia y belleza">Cuidados de la familia y belleza</option>
+                    <option value="Alimentación nutritiva">Alimentación nutritiva</option>
+                    </select>
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">🔍︎</button>
       </form>
 
@@ -145,14 +153,12 @@
    
     
   </main>
-
   <script>
     function toggleNav() {
       var navList = document.getElementById("nav-list");
       navList.classList.toggle("nav-show");
     }
   </script>
-
 
   <footer style="background-color: #18d0f4;
     padding: 1em;
