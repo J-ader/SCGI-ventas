@@ -220,5 +220,48 @@ body {
       color: #fff;
       margin-top: 40px;
     }
+@media (max-width: 1200px) {
+      main {
+        padding-left: 0;
+      }
+      aside {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+      }
+    }
+    @media (max-width: 900px) {
+      .carousel, .hero, .container.text-center {
+        max-width: 98vw;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .productos-grid {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+      }
+      main {
+        padding: 10px 0 10px 0;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero {
+        padding: 18px 6px;
+      }
+      .producto-card {
+        padding: 14px 6px;
+      }
+      aside {
+        padding-top: 10px;
+      }
+    }
  
+ 
+  
    
