@@ -9,14 +9,15 @@ app.secret_key = "secret_key"
 # Conexión a la base de datos
 app.config["MYSQL_HOST"] = "localhost"  # Host de la base de datos
 app.config["MYSQL_USER"] = "root"  # Usuario de la base de datos
-app.config["MYSQL_PASSWORD"] = "2569"  # Contraseña de la base de datos
+app.config["MYSQL_PASSWORD"] = ""  # Contraseña de la base de datos
 app.config["MYSQL_DB"] = "gestion_med"  # Nombre de la base de datos
 
 mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
 
 
 #prueba para saber si la base de datos se conecta correctamente
-""" try:
+# 
+try:
     with app.app_context():
         cur = mysql.connection.cursor()
         cur.execute("SELECT 1")
@@ -24,7 +25,7 @@ mysql = MySQL(app)  # Inicializa la extensión MySQL con la app Flask
 except Exception as e:
     print(f"❌ Error al conectar a la base de datos: {e}")
 
-  """
+  
 
 @app.route("/")
 def home():
@@ -101,7 +102,8 @@ def dashboard():
     column_names = [desc[0] for desc in cur.description]
     usuarios = [dict(zip(column_names, row)) for row in cur.fetchall()]
     cur.close()
-    return render_template("dashboard.html", usuarios=usuarios)  # Muestra el dashboard con usuarios
+    return render_template("productos.html", usuarios=usuarios)
+   # return render_template("dashboard.html", usuarios=usuarios)  # Muestra el dashboard con usuarios
 
 # Eliminar usuario por ID
 @app.route("/delete/<int:id>")
