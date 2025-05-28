@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Panel de Usuarios</title>
@@ -9,15 +10,17 @@
 <body>
   <div class="container">
 
-  
+
     <h2>Usuarios Registrados</h2>
 
     <!-- Sección para mostrar mensajes flash (éxito, error.) -->
-    {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <div class="flash-messages">
-      <ul>{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    {% for category, message in messages %}
+    <div class="flash-messages {{ category }}">
+      {{ message }}
     </div>
+    {% endfor %}
     {% endif %}
     {% endwith %}
 
@@ -45,14 +48,17 @@
           <!-- Botón para editar usuario -->
           <a href="{{ url_for('edit_user', id=usuario['ID']) }}" class="action-button edit">Editar</a>
           <!-- Botón para eliminar usuario, pide confirmación -->
-          <a href="{{ url_for('delete_user', id=usuario['ID']) }}" class="action-button delete" onclick="return confirm('¿Eliminar este usuario?')">Eliminar</a>
+          <a href="{{ url_for('delete_user', id=usuario['ID']) }}" class="action-button delete"
+            onclick="return confirm('¿Eliminar este usuario?')">Eliminar</a>
         </td>
       </tr>
       {% endfor %}
     </table>
 
-    <a href="{{ url_for('logout') }}" class="logout-link">Cerrar Sesión</a>
+    <a href="{{ url_for('index') }}" class="button-home">Ir a Inicio</a>
+    <a href="{{ url_for('logout') }}" class="button-home">Cerrar Sesión</a>
 
   </div>
 </body>
+
 </html>
