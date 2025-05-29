@@ -40,7 +40,7 @@ header {
 
 
 /* Imagen de encabezado (si se usa) */
-.header-image { /* Imagen */
+.header-image {
     width: 100%;
     border-radius: 10px;
     
@@ -115,20 +115,19 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Mensajes flash de éxito o error */
-.flash-messages {
-    margin: 0px 0px 20px 0px;
-    padding: 10px;
+
+/* Mensaje de éxito */
+.flash-messages.success, .flash-messages.alert-success {
     background-color: #e0ffe0;
     border: 1px solid #4CAF50;
-    color: #333;
-    border-radius: 5px;
+    color: #176c3a;
 }
 
-.flash-messages ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+/* Mensaje de error */
+.flash-messages.error, .flash-messages.alert-danger {
+    background-color: #ffe0e0;
+    border: 1px solid #e53935;
+    color: #a94442;
 }
 
 /* Adaptación para pantallas móviles */
