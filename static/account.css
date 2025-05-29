@@ -1,0 +1,94 @@
+body {
+    background: #e0f7fa;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.container {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(32, 178, 170, 0.08);
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 32px 24px 24px 24px;
+    text-align: center;
+}
+
+h1 {
+    color: #1f5a6c;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #386d7d;
+    margin-bottom: 10px;
+}
+
+.btn-edit, .btn-cancel {
+    display: inline-block;
+    margin: 10px 5px 0 5px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    background: #18d0f4;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background: #1f5a6c;
+    color: #fff;
+}
+
+.btn-cancel {
+    background: #bdbdbd;
+    color: #333;
+}
+
+.btn-cancel:hover {
+    background: #757575;
+    color: #fff;
+}
+
+form label {
+    display: block;
+    margin-top: 12px;
+    color: #1f5a6c;
+    text-align: left;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"] {
+    width: 100%;
+    padding: 7px;
+    margin-top: 4px;
+    border-radius: 5px;
+    border: 1px solid #b2ebf2;
+    margin-bottom: 10px;
+}
+
+/* Estilos para alertas  */
+.alert {
+    margin: 20px auto 10px auto;
+    max-width: 400px;
+    border-radius: 8px;
+    font-size: 1em;
+    box-shadow: 0 2px 8px rgba(32, 178, 170, 0.08);
+    text-align: center;
+    padding: 12px 18px;
+}
+
+.alert-success {
+    background-color: #d1f7e7;
+    color: #176c3a;
+    border: 1px solid #18d0f4;
+}
+
+.alert-danger {
+    background-color: #ffe0e0;
+    color: #a94442;
+    border: 1px solid #f4b2b2;
+}
