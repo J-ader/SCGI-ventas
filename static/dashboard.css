@@ -109,3 +109,39 @@ a.action-button {
     padding-left: 0;
     margin: 0;
 }
+
+/* Mensajes flash de éxito */
+.flash-messages.success, .flash-messages.alert-success {
+    background-color: #e0ffe0;
+    border: 1px solid #4CAF50;
+    color: #176c3a;
+}
+
+/* Mensajes flash de error */
+.flash-messages.error, .flash-messages.alert-danger {
+    background-color: #ffe0e0;
+    border: 1px solid #e53935;
+    color: #a94442;
+}
+
+/* Enlace a la página de inicio */
+.button-home {
+    display: inline-block;
+    margin: 10px 8px 0 0;
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: none;
+    background: #E0F7FA;
+    color: #00796B;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.button-home:hover {
+    background: #B2EBF2;
+    color: #004D40;
+}
+
+
