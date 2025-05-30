@@ -5,3 +5,4 @@ flask
 flask-mysqldb
 mysql-connector-python
 werkzeug
+python-dotenv
