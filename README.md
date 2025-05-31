@@ -7,6 +7,7 @@
 
 ## Tabla de Contenidos
 
+- [Equipo de Trabajo](#equipo-de-trabajo)
 - [Descripción General](#descripción-general)
 - [Características](#características)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
@@ -16,6 +17,18 @@
 - [Uso](#uso)
 - [Seguridad](#seguridad)
 - [Licencia](#licencia)
+
+---
+
+## Equipo de Trabajo
+
+Este proyecto fue desarrollado por aprendices del programa **Tecnólogo en Análisis y Desarrollo de Software**, ficha **2834824**, del **Servicio Nacional de Aprendizaje (SENA)**.
+
+**Integrantes del equipo:**
+- Daniel José Meza Cruz
+- Zaida Soralla Cortés Cortés
+- Jader Luis Romero Montalvo
+- Helmer Samir López Toscano
 
 ---
 
