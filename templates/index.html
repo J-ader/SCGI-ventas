@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GestionMed</title>
+  <title>Inicio | GestionMed - Solución Integral para la Venta de Medicamentos</title>
+  <meta name="description" content="GestionMed es la plataforma líder para la gestión y venta de medicamentos. Optimiza inventarios, ventas y procesos en tu farmacia o negocio de salud.">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='media/favicon.png') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='Index.css') }}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     crossorigin="anonymous">
@@ -14,12 +16,13 @@
   <header>
     <div class="container-fluid-1 py-3 d-flex align-items-center justify-content-between">
       <div>
+        <span class="visually-hidden">Logo de GestionMed</span>
         <h1 class="mb-0">GestionMed</h1>
         <p class="mb-0">Su solución integral para la venta de medicamentos.</p>
       </div>
-      <img class="logo_" src="{{ url_for('static', filename='Media/Logo_proyecto.jpg') }}" alt="Logo de la plataforma">
+      <img class="logo_" src="{{ url_for('static', filename='Media/Logo_proyecto.jpg') }}" alt="Logo de GestionMed" title="Logo de GestionMed">
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-info-subtle">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info-subtle" aria-label="Navegación principal">
       <div class="container-fluid">
         <a class="navbar-brand" href="{{ url_for('home') }}">GestionMed</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,21 +37,17 @@
             <li class="nav-item"><a class="nav-link" href="#">Soporte</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Sobre Nosotros</a></li>
           </ul>
-          <form class="d-flex me-3" role="search">
+          <form class="d-flex me-3" role="search" aria-label="Buscador de productos">
             <select class="form-select me-2" aria-label="Categorías">
               <option selected>Todas las categorías</option>
               <option value="Salud y medicamentos">Salud y medicamentos</option>
               <option value="Cuidados de la familia y belleza">Cuidados de la familia y belleza</option>
               <option value="Alimentación nutritiva">Alimentación nutritiva</option>
             </select>
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">🔍︎</button>
+            <input class="form-control me-2" type="search" placeholder="Buscar productos" aria-label="Buscar productos">
+            <button class="btn btn-outline-success" type="submit" aria-label="Buscar">🔍︎</button>
           </form>
           <ul class="navbar-nav mb-2 mb-lg-0">
-
-
-
-
             {% if 'nombre' in session %}
             <!-- Dropdown de Cuenta -->
             <li class="nav-item dropdown ms-2" id="cuentaDropdown">
@@ -56,7 +55,7 @@
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="far fa-user-circle"></i>
                 <span class="ms-1">{{ session['nombre'] }}</span>
-                <img src="https://img.icons8.com/?size=100&id=151IAtg8gTZE&format=png&color=000000" alt="icono extra"
+                <img src="https://img.icons8.com/?size=100&id=151IAtg8gTZE&format=png&color=000000" alt="Icono de usuario"
                   width="26" height="26" class="ms-2" style="vertical-align: middle;">
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -71,16 +70,17 @@
             <!-- Botón de inicio de sesión -->
             <li class="nav-item ms-2">
               <a class="nav-link d-flex align-items-center" href="{{ url_for('login') }}">
-                <img src="https://img.icons8.com/?size=100&id=151IAtg8gTZE&format=png&color=000000" alt="icono extra"
+                <img src="https://img.icons8.com/?size=100&id=151IAtg8gTZE&format=png&color=000000" alt="Icono de usuario"
                   width="26" height="26" class="me-2" style="vertical-align: middle;">
                 <span>Inicia Sesión</span>
               </a>
             </li>
             {% endif %}
           </ul>
-          <a href="#" class="ms-3" title="Carrito">
+          <a href="#" class="ms-3" title="Carrito de compras">
             <svg style="color:#083c34;" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor" height="22"
               width="22" xmlns="http://www.w3.org/2000/svg">
+              <title>Carrito de compras</title>
               <path
                 d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
               </path>
@@ -92,57 +92,57 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" aria-label="Presentación de GestionMed">
+      <h2 class="visually-hidden">Bienvenido a GestionMed</h2>
       <h1>Gestión de Venta de Medicamentos</h1>
-      <p>Optimiza la gestión de inventarios, mejora la eficiencia de las ventas y garantiza la trazabilidad</p>
-
+      <p>Optimiza la gestión de inventarios, mejora la eficiencia de las ventas y garantiza la trazabilidad en tu farmacia.</p>
     </section>
 
-    <section class="about">
+    <section class="about" aria-label="Sobre GestionMed">
       <h2>Sobre Nosotros</h2>
-      <p>Somos una empresa dedicada a brindar soluciones de gestion de venta de medicamentos para mejorar la eficiencia
+      <p>Somos una empresa dedicada a brindar soluciones de gestión de venta de medicamentos para mejorar la eficiencia
         y productividad de nuestros clientes.</p>
     </section>
 
-    <section class="contact">
-      <h2>Contactanos</h2>
+    <section class="contact" aria-label="Contacto">
+      <h2>Contáctanos</h2>
       <p>Puedes contactarnos a través de nuestro formulario de contacto o en nuestras redes sociales.</p>
       <ul>
-        <li><a href="#">Formulario de Contacto</a></li>
-        <li><a href="#">Facebook</a></li>
-        <li><a href="#">Twitter</a></li>
-        <li><a href="#">Instagram</a></li>
+        <li><a href="#" aria-label="Formulario de Contacto">Formulario de Contacto</a></li>
+        <li><a href="#" aria-label="Facebook de GestionMed">Facebook</a></li>
+        <li><a href="#" aria-label="Instagram de GestionMed">Instagram</a></li>
+        <li><a href="#" aria-label="X de GestionMed">X</a></li>
       </ul>
     </section>
 
-    <section class="help">
+    <section class="help" aria-label="Ayuda y soporte">
       <h2>Ayuda</h2>
       <p>Puedes encontrar respuestas a tus preguntas frecuentes en nuestra sección de ayuda.</p>
       <ul>
-        <li><a href="#">Preguntas Frecuentes</a></li>
-        <li><a href="#">Manual de Usuario</a></li>
+        <li><a href="#" aria-label="Preguntas Frecuentes">Preguntas Frecuentes</a></li>
+        <li><a href="#" aria-label="Manual de Usuario">Manual de Usuario</a></li>
       </ul>
     </section>
 
-    <section class="welcome">
+    <section class="welcome" aria-label="Bienvenida y servicios">
       <div class="container">
         <h2>Bienvenido a GestionMed</h2>
-        <p>Ofrecemos una plataforma completa para la gestion y venta de medicamentos, diseñada para farmacias y
+        <p>Ofrecemos una plataforma completa para la gestión y venta de medicamentos, diseñada para farmacias y
           profesionales de la salud.</p>
         <h3>Nuestros servicios incluyen:</h3>
         <ul>
-          <li>Gestion de inventario</li>
+          <li>Gestión de inventario</li>
           <li>Procesamiento de pedidos</li>
-          <li>Facturacion automatizada</li>
-          <li>Informes y analisis</li>
+          <li>Facturación automatizada</li>
+          <li>Informes y análisis</li>
         </ul>
-        <a href="#contacto" class="cta-button">Contactenos para una demo</a>
+        <a href="#contacto" class="cta-button" aria-label="Solicitar una demostración">Contáctenos para una demo</a>
       </div>
     </section>
   </main>
 
   <footer class="footer-custom mt-5">
-    <p>&copy; 2025 Gestion de Venta de Medicamentos. Todos los derechos reservados</p>
+    <p>&copy; 2025 GestionMed. Todos los derechos reservados.</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>

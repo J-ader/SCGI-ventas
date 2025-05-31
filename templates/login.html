@@ -2,53 +2,56 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión | GestionMed</title>
+  <meta name="description" content="Accede a tu cuenta en GestionMed. Inicia sesión para gestionar tus medicamentos, pedidos y datos de usuario de forma segura.">
+  <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='media/favicon.png') }}">
 </head>
 
 <body>
-    <div class="container">
-        <!-- Encabezado del formulario de inicio de sesión -->
-        <header>
-            <a href="{{ url_for('index') }}" class="back-arrow">&larr;</a> <!-- Flecha para volver atrás --><img class="header-image"
-                src="https://cdn.glitch.global/178052fc-7d6e-42a8-9f65-6ec1f1aed727/Dise%C3%B1o%20sin%20t%C3%ADtulo%20(1).png?v=1732227518990"
-                alt="Imagen de medicina">
-        </header>
+  <main>
+    <div class="container" aria-label="Formulario de inicio de sesión">
+      <!-- Encabezado del formulario de inicio de sesión -->
+      <header>
+        <a href="{{ url_for('index') }}" class="back-arrow" aria-label="Volver al inicio">&larr;</a>
+        <img class="header-image"
+             src="{{ url_for('static', filename='media/login_img.png') }}"
+             alt="Ilustración de inicio de sesión en GestionMed"
+             title="Iniciar sesión en GestionMed">
+      </header>
 
+      <h1>Iniciar Sesión</h1>
+      <p>Accede con tu correo y contraseña.</p>
 
-        <h1>Iniciar Sesión</h1>
-        <p>Accede con tu correo y contraseña.</p>
+      <!-- Sección para mostrar mensajes flash (errores o avisos) -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash-messages {{ category }}" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
 
-        <!-- Sección para mostrar mensajes flash (errores o avisos) -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="flash-messages {{ category }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+      <!-- Formulario de inicio de sesión -->
+      <form method="POST" aria-label="Formulario de inicio de sesión">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="Correo electrónico" required autocomplete="username">
 
-        <!-- Formulario de inicio de sesión -->
-        <form method="POST">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Contraseña" required autocomplete="current-password">
 
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+        <button type="submit" aria-label="Ingresar a GestionMed">Ingresar</button>
+      </form>
 
-            <button type="submit">Ingresar</button>
-        </form>
-
-
-        <footer>
-            <p>¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate</a></p>
-        </footer>
+      <footer>
+        <p>¿No tienes cuenta? <a href="{{ url_for('register') }}" aria-label="Ir a registro de usuario">Regístrate</a></p>
+      </footer>
     </div>
+  </main>
 </body>
 
 </html>
